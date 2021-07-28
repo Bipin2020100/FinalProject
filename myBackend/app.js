@@ -61,5 +61,5 @@ app.use(function (err, req, res, next) {
   res.status(500).json({ err: "serverside Error" });
 });
 
-// module.exports = app;
+module.exports = app;
 app.listen(3000);
