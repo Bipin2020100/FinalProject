@@ -98,26 +98,28 @@ function Todos(props) {
 
     return (
         <div>
-            <div>
+            
                 <label
                     className='form-label'
-                    style={{ textAlign: "left", fontWeight: "bold" }}>
+                    style={{ textAlign: "left", fontWeight: "bold", fontSize:30 }}>
                     Your ToDo's:
                 </label>
-            </div>
+            
             <div>
                 {state.todo.map((item) => {
                     return (
                         <Todo
                             key={item}
                             todo={item}
-                            onDelete={() => {onDeleteHandler(item)}}
+                            onDelete={() => {
+                                onDeleteHandler(item);
+                            }}
                         />
                     );
                 })}
             </div>
 
-            <h3>Set up your TODO list here:</h3>
+            <h3 style={{ textAlign: "left" }}>Setup your TODO list here:<img alt = ""  src='/kick.png' style={{ width: 130, height: 140}} /></h3>
             <div className='mb-3' style={{ textAlign: "left" }}>
                 <input
                     id='currentTodo'
@@ -127,14 +129,16 @@ function Todos(props) {
                         width: 500,
                         textAlign: "center",
                         border: "3px solid green",
+                        align: "center",
                     }}
                     onChange={handleChange}
-                />
+                />{" "}<br></br>
                 <button
                     type='button'
                     className='btn btn-dark'
                     onClick={onSubmit}
-                    style={{ textAlign: "center" }}>
+                    // style={{ textAlign: "center" }}
+                    >
                     Submit Todo
                 </button>
             </div>

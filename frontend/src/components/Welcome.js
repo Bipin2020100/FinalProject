@@ -29,10 +29,12 @@ const Welcome = () => {
     return (
         <div style={{ color: "white" }}>
             <h1>
-                Welcome {state.firstName} {state.lastName}! You are logged in
+                Welcome {state.firstName} {state.lastName}! You are logged in<img alt = ""  src='/2.png' style={{ width: 150, height: 150 }} />
             </h1>
             
+            <hr styles={{border: 4, }} />
             <Todos/>
+
 
             {/* <div className='.text-left' style={{ textAlign: "left" }}>
                 <button
