@@ -50,6 +50,30 @@ function Todos(props) {
         }));
     };
 
+    const onDeleteHandler = (item) => {
+        let payload = { email: state.email, todo: item };
+        console.log(payload);
+
+        axios
+            .put("http://localhost:3000/todo", payload, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: state.storedData,
+                },
+            })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        setState((prevState) => ({
+            ...prevState,
+            todo: [...state.todo],
+        }));
+    };
+
     useEffect(() => {
         if (state.userName === "") {
             let storedData = localStorage.getItem("myToken");
@@ -83,7 +107,13 @@ function Todos(props) {
             </div>
             <div>
                 {state.todo.map((item) => {
-                    return <Todo key={item} todo={item} />;
+                    return (
+                        <Todo
+                            key={item}
+                            todo={item}
+                            onDelete={() => {onDeleteHandler(item)}}
+                        />
+                    );
                 })}
             </div>
 

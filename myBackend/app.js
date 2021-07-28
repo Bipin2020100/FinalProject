@@ -12,6 +12,7 @@ var tokenCheck = require("./middleware/tokenCheck")
 
 
 const mongoClient = require("mongodb").MongoClient;
+const { token } = require("morgan");
 const client = new mongoClient(
     "mongodb+srv://bipin:1234@cluster0.p1i7n.mongodb.net?retryWrites=true&w=majority",
     { useUnifiedTopology: true }
@@ -48,18 +49,18 @@ app.use("/", (req, res, next) => {  //TODO: I want to understand this function
 // app.use(express.static(path.join(__dirname, 'public')));// TODO: In what cases we might use public folder in express?? If we want to load some static content from the backend. May be the frontend static app from the server.
 
 /*routes*/
-app.use(tokenCheck);//middleware
+// app.use(tokenCheck);//middleware
 
 app.use("/", indexRouter);
 
 app.use("/auth", authRouter);
 // app.use("/users", usersRouter);
-app.use("/todo", todoRouter);
+app.use("/todo", tokenCheck, todoRouter);
 
 // error handler
 app.use(function (err, req, res, next) {
   res.status(500).json({ err: "serverside Error" });
 });
 
-module.exports = app;
+// module.exports = app;
 app.listen(3000);

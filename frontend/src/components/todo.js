@@ -1,6 +1,12 @@
 import React from 'react';
 
 function Todo(props) {
+     
+     const onDelete =()=> {
+          
+     }
+     
+     
      return (
           
           <div>
@@ -14,7 +20,8 @@ function Todo(props) {
                 </button>{" " }
                 <button
                     type='button'
-                    className='btn btn-dark'
+                    className='btn btn-danger'
+                    onClick={props.onDelete}
                     style={{ textAlign: "center" }}>
                     Delete
                 </button>

@@ -6,10 +6,13 @@ tokenCheck = (req, res, next) => {
         return;
     }
     const token = req.headers.authorization;
+    console.log("tokenCheck",token)
     if (!token) {
+        console.log('token')
         return res.status(401).json({ status: "auth_error" });
     } else {
-        const data = jwt.verify(token);
+        const data = jwt.verify(token,'secret');
+        console.log("tokenCHeck data",data)
         if (!data) {
             return res.json({ status: "auth_error" });
         }
