@@ -68,9 +68,12 @@ function Todos(props) {
                 console.log(err);
             });
 
+        let tempArr = state.todo.filter((todo) => {
+            return todo !== item;
+        });
         setState((prevState) => ({
             ...prevState,
-            todo: [...state.todo],
+            todo: tempArr,
         }));
     };
 
@@ -98,13 +101,12 @@ function Todos(props) {
 
     return (
         <div>
-            
-                <label
-                    className='form-label'
-                    style={{ textAlign: "left", fontWeight: "bold", fontSize:30 }}>
-                    Your ToDo's:
-                </label>
-            
+            <label
+                className='form-label'
+                style={{ textAlign: "left", fontWeight: "bold", fontSize: 30 }}>
+                Your ToDo's:
+            </label>
+
             <div>
                 {state.todo.map((item) => {
                     return (
@@ -119,7 +121,14 @@ function Todos(props) {
                 })}
             </div>
 
-            <h3 style={{ textAlign: "left" }}>Setup your TODO list here:<img alt = ""  src='/kick.png' style={{ width: 130, height: 140}} /></h3>
+            <h3 style={{ textAlign: "left" }}>
+                Setup your TODO list here:
+                <img
+                    alt=''
+                    src='/kick.png'
+                    style={{ width: 130, height: 140 }}
+                />
+            </h3>
             <div className='mb-3' style={{ textAlign: "left" }}>
                 <input
                     id='currentTodo'
@@ -132,13 +141,14 @@ function Todos(props) {
                         align: "center",
                     }}
                     onChange={handleChange}
-                />{" "}<br></br>
+                />{" "}
+                <br></br>
                 <button
                     type='button'
                     className='btn btn-dark'
                     onClick={onSubmit}
                     // style={{ textAlign: "center" }}
-                    >
+                >
                     Submit Todo
                 </button>
             </div>
